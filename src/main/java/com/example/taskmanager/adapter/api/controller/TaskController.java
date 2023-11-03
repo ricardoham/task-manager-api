@@ -1,7 +1,7 @@
-package com.example.taskmanager.controller;
+package com.example.taskmanager.adapter.api.controller;
 
-import com.example.taskmanager.model.Task;
-import com.example.taskmanager.services.TaskServices;
+import com.example.taskmanager.app.domain.model.Task;
+import com.example.taskmanager.app.services.TaskServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
