@@ -24,9 +24,7 @@ public class TaskController {
 
     @PostMapping
     void createTask(@RequestBody TaskRequest taskRequest) {
-        // TODO create a request mapper
-        // createTaskService.create();
-
+        createTaskService.create(TaskRequestMapper.taskRequestToTask(taskRequest));
     }
 
 }
