@@ -3,6 +3,7 @@ package com.example.taskmanager.adapter.api.controller;
 import com.example.taskmanager.app.domain.model.Task;
 import com.example.taskmanager.app.services.CreateTaskService;
 import com.example.taskmanager.app.services.GetTaskService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

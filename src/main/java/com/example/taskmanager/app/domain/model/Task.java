@@ -21,7 +21,6 @@ public class Task {
     private String owner;
 
     private String createdBy;
-
     @Enumerated
     private TaskPriority taskPriority;
 
@@ -30,5 +29,4 @@ public class Task {
     private LocalDateTime updateAt;
 
     private LocalDateTime closedAt;
-
 }
