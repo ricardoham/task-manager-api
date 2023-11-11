@@ -11,10 +11,12 @@ import java.util.List;
 @RestController()
 @RequestMapping("api/tasks")
 public class TaskController {
+    @Autowired
     private GetTaskService taskService;
+    @Autowired
     private CreateTaskService createTaskService;
 
-    @GetMapping
+    @GetMapping("/{id}")
     Task getTask(@RequestParam String id) {
         return taskService.getTask(Long.parseLong(id));
     }
