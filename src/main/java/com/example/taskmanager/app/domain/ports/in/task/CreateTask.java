@@ -1,4 +1,4 @@
-package com.example.taskmanager.app.domain.ports.in;
+package com.example.taskmanager.app.domain.ports.in.task;
 
 import com.example.taskmanager.app.domain.model.Task;
 

@@ -1,4 +1,4 @@
-package com.example.taskmanager.app.domain.ports.in;
+package com.example.taskmanager.app.domain.ports.in.task;
 
 import java.util.List;
 
