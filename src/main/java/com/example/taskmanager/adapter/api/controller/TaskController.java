@@ -2,7 +2,8 @@ package com.example.taskmanager.adapter.api.controller;
 
 import com.example.taskmanager.app.domain.model.Task;
 import com.example.taskmanager.app.services.CreateTaskService;
-import com.example.taskmanager.app.services.GetTaskService;
+import com.example.taskmanager.app.services.DeleteTasksService;
+import com.example.taskmanager.app.services.GetTasksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +13,15 @@ import java.util.List;
 @RequestMapping("api/tasks")
 public class TaskController {
     @Autowired
-    private GetTaskService taskService;
+    private GetTasksService taskService;
     @Autowired
     private CreateTaskService createTaskService;
 
+    @Autowired
+    private DeleteTasksService deleteTasksService;
+
     @GetMapping("/{id}")
-    Task getTask(@RequestParam String id) {
+    Task getTask(@PathVariable String id) {
         return taskService.getTask(Long.parseLong(id));
     }
     @GetMapping
@@ -30,4 +34,8 @@ public class TaskController {
         createTaskService.create(TaskRequestMapper.taskRequestToTask(taskRequest));
     }
 
+    @DeleteMapping("/{id}")
+    void deleteTask(@PathVariable String id) {
+        deleteTasksService.deleteTask(Long.parseLong(id));
+    }
 }

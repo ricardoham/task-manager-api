@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GetTaskService implements GetTasks {
+public class GetTasksService implements GetTasks {
     @Autowired
     private TaskRepository taskManagerRepository;
 
