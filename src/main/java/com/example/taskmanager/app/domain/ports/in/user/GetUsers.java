@@ -5,6 +5,6 @@ import com.example.taskmanager.app.domain.model.User;
 import java.util.List;
 
 public interface GetUsers {
-    User getUser(Long id);
-    List<User> getUsers(List<Long> ids);
+    User retrieve(Long id);
+    List<User> retrieveAll();
 }

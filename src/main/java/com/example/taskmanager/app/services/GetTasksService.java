@@ -15,11 +15,11 @@ public class GetTasksService implements GetTasks {
 
 
     @Override
-    public Task getTask(Long id) {
+    public Task retrieve(Long id) {
         return taskManagerRepository.findById(id).orElseThrow();
     }
 
-    public List<Task> getAllTasks() {
+    public List<Task> retrieveAll() {
         return taskManagerRepository.findAll();
     }
 }

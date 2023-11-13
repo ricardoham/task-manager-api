@@ -1,41 +1,41 @@
 package com.example.taskmanager.adapter.api.controller;
 
 import com.example.taskmanager.app.domain.model.Task;
-import com.example.taskmanager.app.services.CreateTaskService;
-import com.example.taskmanager.app.services.DeleteTasksService;
-import com.example.taskmanager.app.services.GetTasksService;
+import com.example.taskmanager.app.domain.ports.in.task.CreateTask;
+import com.example.taskmanager.app.domain.ports.in.task.DeleteTasks;
+import com.example.taskmanager.app.domain.ports.in.task.GetTasks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
-@RequestMapping("api/tasks")
+@RestController
+@RequestMapping("/api/tasks")
 public class TaskController {
     @Autowired
-    private GetTasksService taskService;
+    private GetTasks getTask;
     @Autowired
-    private CreateTaskService createTaskService;
+    private CreateTask createTask;
 
     @Autowired
-    private DeleteTasksService deleteTasksService;
+    private DeleteTasks deleteTasks;
 
     @GetMapping("/{id}")
     Task getTask(@PathVariable String id) {
-        return taskService.getTask(Long.parseLong(id));
+        return getTask.retrieve(Long.parseLong(id));
     }
     @GetMapping
     List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+        return getTask.retrieveAll();
     }
 
     @PostMapping
     void createTask(@RequestBody TaskRequest taskRequest) {
-        createTaskService.create(TaskRequestMapper.taskRequestToTask(taskRequest));
+        createTask.create(TaskRequestMapper.taskRequestToTask(taskRequest));
     }
 
     @DeleteMapping("/{id}")
     void deleteTask(@PathVariable String id) {
-        deleteTasksService.deleteTask(Long.parseLong(id));
+        deleteTasks.deleteTask(Long.parseLong(id));
     }
 }
