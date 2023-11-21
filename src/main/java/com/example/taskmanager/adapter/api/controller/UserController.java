@@ -1,10 +1,12 @@
 package com.example.taskmanager.adapter.api.controller;
 
 import com.example.taskmanager.app.domain.model.User;
-import com.example.taskmanager.app.domain.ports.in.user.CreateUser;
 import com.example.taskmanager.app.domain.ports.in.user.GetUsers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -15,8 +17,6 @@ public class UserController {
     @Autowired
     GetUsers getUsers;
 
-    @Autowired
-    CreateUser createUser;
 
     @GetMapping("/{id}")
     User getUser(@PathVariable String id) {
@@ -28,8 +28,4 @@ public class UserController {
         return getUsers.retrieveAll();
     }
 
-    @PostMapping
-    void createUser(@RequestBody User user) {
-        createUser.create(user);
-    }
 }

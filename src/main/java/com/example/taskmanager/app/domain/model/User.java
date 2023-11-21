@@ -1,6 +1,7 @@
 package com.example.taskmanager.app.domain.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.Objects;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "users")
 @Table(name = "users")
 public class User implements UserDetails {
@@ -28,23 +30,21 @@ public class User implements UserDetails {
     private String password;
     private UserRoles role;
 
+    public User(String userName, String password, UserRoles role) {
+        this.userName = userName;
+        this.password = password;
+        this.role = role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (this.role == UserRoles.ADMIN) {
             return List.of(
                     new SimpleGrantedAuthority("ROLE_ADMIN"),
-                    new SimpleGrantedAuthority("ROLE_EDITOR"),
-                    new SimpleGrantedAuthority("ROLE_VIEWER")
+                    new SimpleGrantedAuthority("ROLE_USER")
             );
-        } else if (this.role == UserRoles.EDITOR) {
-            return List.of(
-                    new SimpleGrantedAuthority("ROLE_ADMIN"),
-                    new SimpleGrantedAuthority("ROLE_EDITOR"),
-                    new SimpleGrantedAuthority("ROLE_VIEWER"));
-
-        } else {
-            return List.of(new SimpleGrantedAuthority("ROLE_VIEWER"));
         }
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override

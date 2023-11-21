@@ -2,8 +2,7 @@ package com.example.taskmanager.app.domain.model;
 
 public enum UserRoles {
     ADMIN("admin"),
-    EDITOR("editor"),
-    VIEWER("viewer"),
+    USER("user"),
     ;
 
     private final String role;
