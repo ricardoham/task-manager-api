@@ -1,6 +1,8 @@
 package com.example.taskmanager.adapter.api.controller;
 
+import com.example.taskmanager.adapter.jwt.JwtService;
 import com.example.taskmanager.app.domain.model.RegisterDTO;
+import com.example.taskmanager.app.domain.model.User;
 import com.example.taskmanager.app.domain.ports.in.register.Register;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +23,17 @@ public class AuthenticationController {
     @Autowired
     private Register register;
 
+    @Autowired
+    private JwtService jwtService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO authentication) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(authentication.userName(), authentication.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = jwtService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
