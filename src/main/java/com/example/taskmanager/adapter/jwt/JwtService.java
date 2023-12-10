@@ -5,28 +5,29 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.example.taskmanager.app.domain.model.User;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+@Slf4j
 @Service
 public class JwtService {
-    @Value("${api.security.token.secret}")
-    private String secret;
+    @Autowired
+    private JwtConfiguration jwtConfiguration;
 
     public String generateToken(User user) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            String token = JWT.create()
-                    .withIssuer("task-manager-api")
+            Algorithm algorithm = Algorithm.HMAC256(jwtConfiguration.getJwtSecret());
+
+            return JWT.create()
+                    .withIssuer(JwtConfiguration.ISSUER)
                     .withSubject(user.getUsername())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
-
-            return token;
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Error while generating token", exception);
         }
@@ -34,13 +35,14 @@ public class JwtService {
 
     public String validateToken(String token) {
         try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
+            Algorithm algorithm = Algorithm.HMAC256(jwtConfiguration.getJwtSecret());
             return JWT.require(algorithm)
-                    .withIssuer("task-manager-api")
+                    .withIssuer(JwtConfiguration.ISSUER)
                     .build()
                     .verify(token)
                     .getSubject();
         } catch (JWTVerificationException exception) {
+            log.error("Error when validating the token", exception.getCause());
             return "";
         }
     }
