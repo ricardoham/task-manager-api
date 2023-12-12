@@ -43,11 +43,11 @@ public class JwtService {
                     .getSubject();
         } catch (JWTVerificationException exception) {
             log.error("Error when validating the token", exception.getCause());
-            return "";
+            throw exception;
         }
     }
 
     private Instant genExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("+03:00"));
+        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }

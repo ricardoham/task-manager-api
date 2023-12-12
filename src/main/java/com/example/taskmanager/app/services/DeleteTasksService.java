@@ -15,7 +15,7 @@ public class DeleteTasksService implements DeleteTasks {
 
     // TODO implement soft delete
     @Override
-    public void deleteTask(Long id) {
+    public void deleteTask(Long id, String userName) {
         taskRepository.deleteById(id);
     }
 
