@@ -1,13 +1,17 @@
 package com.example.taskmanager.adapter.api.controller;
 
 import com.example.taskmanager.app.domain.model.TaskPriority;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
-import lombok.Setter;
 
-@Setter
+import java.time.LocalDateTime;
+
 @Getter
-public class TaskRequest {
+public class TaskUpdateRequest {
     private String title;
     private String description;
+    @Enumerated
     private TaskPriority taskPriority;
+    private String owner;
+    private LocalDateTime closedAt;
 }

@@ -1,9 +1,11 @@
 package com.example.taskmanager.adapter.api.controller;
 
 import com.example.taskmanager.app.domain.model.Task;
+import com.example.taskmanager.app.domain.model.TaskDTO;
 import com.example.taskmanager.app.domain.ports.in.task.CreateTask;
 import com.example.taskmanager.app.domain.ports.in.task.DeleteTasks;
 import com.example.taskmanager.app.domain.ports.in.task.GetTasks;
+import com.example.taskmanager.app.domain.ports.in.task.UpdateTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +21,8 @@ public class TaskController {
     @Autowired
     private CreateTask createTask;
 
+    @Autowired
+    private UpdateTask updateTask;
     @Autowired
     private DeleteTasks deleteTasks;
 
@@ -36,8 +40,14 @@ public class TaskController {
     }
 
     @PostMapping
-    void createTask(@RequestBody TaskRequest taskRequest) {
-        createTask.create(TaskRequestMapper.taskRequestToTask(taskRequest));
+    void createTask(@RequestBody TaskCreateRequest taskCreateRequest) {
+        createTask.create(TaskRequestMapper.taskRequestToTask(taskCreateRequest));
+    }
+
+    @PutMapping("/{id}")
+    TaskDTO updateTask(@RequestBody TaskUpdateRequest taskUpdateRequest, @PathVariable Long id) {
+        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return updateTask.update(user.getUsername(), taskUpdateRequest, id);
     }
 
     // TODO create a soft delete
