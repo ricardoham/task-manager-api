@@ -1,7 +1,7 @@
 package com.example.taskmanager.test_data_builder.task;
 
-import com.example.taskmanager.app.domain.model.Task;
-import com.example.taskmanager.app.domain.model.TaskPriority;
+import com.example.taskmanager.domain.model.Task;
+import com.example.taskmanager.domain.model.TaskPriority;
 
 import java.time.LocalDateTime;
 

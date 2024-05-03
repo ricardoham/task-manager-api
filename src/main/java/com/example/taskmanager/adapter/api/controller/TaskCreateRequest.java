@@ -1,6 +1,6 @@
 package com.example.taskmanager.adapter.api.controller;
 
-import com.example.taskmanager.app.domain.model.TaskPriority;
+import com.example.taskmanager.domain.model.TaskPriority;
 import lombok.Getter;
 import lombok.Setter;
 

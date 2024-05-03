@@ -1,11 +1,11 @@
 package com.example.taskmanager.adapter.api.controller;
 
-import com.example.taskmanager.app.domain.model.Task;
-import com.example.taskmanager.app.domain.model.TaskDTO;
-import com.example.taskmanager.app.domain.ports.in.task.CreateTask;
-import com.example.taskmanager.app.domain.ports.in.task.DeleteTasks;
-import com.example.taskmanager.app.domain.ports.in.task.GetTasks;
-import com.example.taskmanager.app.domain.ports.in.task.UpdateTask;
+import com.example.taskmanager.domain.model.Task;
+import com.example.taskmanager.domain.model.TaskDTO;
+import com.example.taskmanager.domain.ports.in.task.CreateTask;
+import com.example.taskmanager.domain.ports.in.task.DeleteTasks;
+import com.example.taskmanager.domain.ports.in.task.GetTasks;
+import com.example.taskmanager.domain.ports.in.task.UpdateTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

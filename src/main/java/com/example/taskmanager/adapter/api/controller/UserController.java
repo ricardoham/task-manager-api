@@ -1,7 +1,7 @@
 package com.example.taskmanager.adapter.api.controller;
 
-import com.example.taskmanager.app.domain.model.User;
-import com.example.taskmanager.app.domain.ports.in.user.GetUsers;
+import com.example.taskmanager.domain.model.User;
+import com.example.taskmanager.domain.ports.in.user.GetUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

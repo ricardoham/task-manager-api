@@ -1,7 +1,8 @@
 package com.example.taskmanager.app.services;
 
-import com.example.taskmanager.adapter.repository.TaskRepository;
-import com.example.taskmanager.app.domain.model.Task;
+import com.example.taskmanager.domain.model.Task;
+import com.example.taskmanager.domain.ports.out.TaskRepository;
+import com.example.taskmanager.domain.services.task.CreateTaskService;
 import com.example.taskmanager.test_data_builder.task.TaskDataTestBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

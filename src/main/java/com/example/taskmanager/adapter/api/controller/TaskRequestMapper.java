@@ -1,6 +1,6 @@
 package com.example.taskmanager.adapter.api.controller;
 
-import com.example.taskmanager.app.domain.model.Task;
+import com.example.taskmanager.domain.model.Task;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
